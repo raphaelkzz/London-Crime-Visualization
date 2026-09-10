@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--[if lt IE 9]>
+    <script>
+      document.createElement('header');
+      document.createElement('nav');
+      document.createElement('section');
+      document.createElement('article');
+      document.createElement('aside');
+      document.createElement('footer');
+    </script>
+    <![endif]-->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Census 2021 Bulk - Nomis - Official Census and Labour Market Statistics</title>
+    <meta name="description" content="nomis - official labour market statistics" />
+    <meta name="keywords" content="annual business inquiry" />
+    <meta name="viewport" content="initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link title="Easy Access version" rel="alternate" href="/home/accesskeys.htm" media="aural, braille, tty">
+    <link rel="alternate" type="application/rss+xml" title="Nomis RSS News Feed" href="/articles/rssArticles.asp" />
+    <link rel="alternate" type="application/rss+xml" title="Nomis RSS Release Dates Feed" href="/home/rssRelease_dates.asp" />
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="/libs/jqueryui/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/libs/jquery-simplePagination/simplePagination.min.css" />
+    <link rel="stylesheet" href="/libs/leaflet/leaflet.css" type="text/css" />
+
+    <link rel="stylesheet" href="/css/nomis.css" type="text/css" />
+    <link rel="stylesheet" href="/css/standard.css" type="text/css" />
+    <link rel="stylesheet" href="/css/nomis-ui.css" type="text/css" />
+    <link rel="stylesheet" href="/css/menubar.css" type="text/css" />
+    <link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+    <!--[if Safari]>
+        <link rel="stylesheet" href="/css/safari-nomis.css" type="text/css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="/libs/modernizr/modernizr.min.js"></script>
+    <script type="text/javascript" src="/libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/libs/jquery-cookie/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="/libs/jquery-simplePagination/jquery.simplePagination.min.js"></script>
+    <script type="text/javascript" src="/libs/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/libs/leaflet/leaflet.min.js"></script>
+    
+    <style>
+        .prefFntCtrl:hover, .prefFntCtrl:visited { color: #00B; }
+        .prefFntCtrl { border: 1px solid transparent; padding: 1px; }
+        .activeFntSz { border-color: #00b; font-weight: normal; }
+        #nomisweb-organisation-name-title:hover { text-decoration: underline; }
+        .fa-search { border: 0; padding: 0.7em; background: #5f7d41; font-size: 13px; color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+        .fa-search:hover { cursor: pointer; }
+    </style>
+    <script type="text/javascript">
+        // Include D3 for browsers that support it
+        if (Modernizr.inlinesvg) { document.write ('<script type="text\/javascript" src="\/libs\/d3\/d3.min.js"><\/script>'); }
+    </script>
+        
+    <script type="text/javascript" src="/js/PageScripts.js"></script>
+    <script type="text/javascript" src="/js/nomis-core.js"></script>
+	<script type="text/javascript" src="/js/nomis-geography.js"></script>
+    <script type="text/javascript" src="/js/nomis-api.js"></script>
+    <script type="text/javascript" src="/js/nomis-ui.js"></script>
+    <script type="text/javascript" src="/js/nomis-stat.js"></script>
+    <script type="text/javascript" src="/js/cookies.js"></script>
+       
+	<script type="text/javascript">
+        const GA_TRACKING_ID = 'UA-3628896-1';
+
+        // Disable GA by default
+        window[`ga-disable-${GA_TRACKING_ID}`] = true;
+        if(hasCookieConsent()){
+            // Enable GA if consent is given
+            window[`ga-disable-${GA_TRACKING_ID}`] = false;
+
+            (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', GA_TRACKING_ID, 'auto');
+            ga('send', 'pageview');
+        }else{
+            // Cookies disabled 
+        	function ga(){};
+        }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+    // Set GA4 Measurement ID
+    const GA4_MEASUREMENT_ID = 'G-LMNEJ7PM1T';
+
+    // Disable GA4 by default
+    window[`ga-disable-${GA4_MEASUREMENT_ID}`] = true;
+
+    if (hasCookieConsent()) {
+        // Enable GA4 if consent is given
+        window[`ga-disable-${GA4_MEASUREMENT_ID}`] = false;
+
+        // Load the GA4 script
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
+        document.head.appendChild(script);
+
+        script.onload = function () {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', GA4_MEASUREMENT_ID);
+        };
+    }else{
+        // Cookies disabled 
+        function gtag(){};
+    }
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        if(hasCookieConsent()){
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NJWJX69');
+        }
+    </script>
+    <!-- End Google Tag Manager -->
+
+</head>
+<body onload="javascript:try { pageLoaded(); } catch(er) { }" onunload="javascript:try { pageUnloaded(); } catch(er) { }">
+    <div role="status" id="titleStatusDiv" class="visually-hidden"></div>
+    <div id="nomis-webpage">
+        <div id="cookie-consent-wrapper" aria-labelledby="cookie-consent-heading" style="display: none;" role="alert">
+            <h1 id="cookie-consent-heading">Cookie Consent</h1>
+            <div class="cookie-container">
+                <div id="outstanding-cookie-decision-panel">
+                    <p id="cookie-consent-info">We use cookies to ensure you get the best experience on our website and to remember if you've accepted cookies.</p>
+                    <br>
+                    <button id="cookie-consent-accept-button" class="positive" aria-label="cookie-consent-accept" onclick="cookieAccept();" title="Consent to the use of cookies" type="button">Accept Cookies</button>
+                    <button id="cookie-consent-decline-button" class="positive" aria-label="cookie-consent-decline" onclick="cookieDecline();" title="Decline the use of cookies" type="button">Decline Cookies</button>
+                    <a href="/home/cookies.asp" id="cookie-link" title="Read about how cookies are used on the Nomis web site">View cookie policy</a>
+                </div>
+                <div id="confirmed-cookie-decision-panel" style="display: none;">
+                    <p>Thanks for confirming your cookie preference. You can view or change your <a href="javascript: showSitePrefs();">cookie settings</a> at any time.</p>
+                    <input id="cookie-consent-dismiss-button" aria-labelledby="cookie-consent-terms" onclick="cookieConsentDismiss();" title="Hide this message about cookies" type="button" value="Hide" />
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function shouldDisplayCookieConsent() { return $.cookie('cookie-consent') === undefined; }
+            function cookieAccept(){$('#outstanding-cookie-decision-panel').css('display', 'none'); $('#confirmed-cookie-decision-panel').css('display', 'block'); setCookieConsent(true);}
+            function cookieDecline(){$('#outstanding-cookie-decision-panel').css('display', 'none'); $('#confirmed-cookie-decision-panel').css('display', 'block'); setCookieConsent(false);}
+            function cookieConsentDismiss() { $('#cookie-consent-wrapper').slideUp(800); }
+            if (shouldDisplayCookieConsent()) { $('#cookie-consent-wrapper').css('display', 'block'); }
+        </script>
+        <div id="org-name-and-logo-wrapper" role="banner" aria-labelledby="nomisweb-organisation-name-title nomisweb-organisation-name-subtitle" style="overflow: hidden;">
+            <div class="hidden-until-focus">
+                <a href="#content-anchor" accesskey="s" class="skiptocontent">Skip to content</a>
+                <a href="/home/accessibility.asp" title="navigation link to Nomis website accessibility guide page">Skip to accessibility help</a>
+            </div>
+            <div id="nomisweb-organisation-name">
+                <div id="nomisweb-main-title-container"> <div id="nomisweb-organisation-name-title"><a href="/" accesskey="1">nomis</a></div> </div>
+                <div id="nomisweb-subtitle-container"> <div id="nomisweb-organisation-name-subtitle">official census and labour market statistics</div> </div>
+            </div>
+            <div class="nomisweb-ons-logo" style="float: none; text-align: right; margin-right: 0;">
+                <a href="https://www.ons.gov.uk">
+                    <img alt="National Statistics Logo" src="/images/ons-logo.svg" style="margin-top: 0; float: none; width: 19.7em;">
+                </a>
+                <div class="page-heading-tools" style="padding-left: 0 !important; background-color: #fff; margin-right: -5px; margin-top: 0; padding: 0 !important; clear: none;">
+                    <form id="site-search" onsubmit="if(document.getElementById('site-search-term').value == 'Search Nomis...') return false; else return true;" action="/home/Search" method="GET">
+                        <input type="hidden" id="site-search-context" name="context" value="" />
+                        <label class="obscure" for="site-search-term" id="lblsite-search-term">Search term</label>
+                        <input type="search" id="site-search-term" name="term" maxlength="75" aria-labelledby="lblsite-search-term" style="border: 1px solid #ddd; margin-right: 0; padding: 0.2em;" value="" />
+                        <button type="submit" style="padding: 0; border: 0;" title="Search" accesskey="4"><i class="fa fa-search"></i></button>
+                        <script type="text/javascript">
+                            NomisCore.setPlaceholder('site-search-term', 'Search...');
+                        </script>
+                    </form>
+                </div>               
+            </div>
+            
+        </div>
+        <!-- PRE-SITE-NAV-BANNER-HOOK -->
+        <div id="site-nav-banner">
+            <div id="menu-control">
+                <a title="Show/Hide site navigation menu" href="javascript:  $('#nomis-top-main-nav-wrapper').slideToggle(); event.preventDefault();"><img src="/images/menu.gif" alt="Picture of three horizontal lines representing a menu" /> Menu</a>
+                <a title="Set site preferences" href="javascript: showSitePrefs();"><img src="/images/cog.gif" alt="Picture of a cog representing settings for the web site" /></a>
+            </div>
+            <!-- Begin site navigation banner section -->
+            <div id="nomis-top-main-nav-wrapper" role="navigation" aria-label="Site Navigation">
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="/" accesskey="1">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home/profiles.asp">Reports</a>
+                            <div class="sub-nav">
+                                <h1>Area reports</h1>
+                                <ul>
+                                    <li><a href="/reports/localarea">Local Area Report (district/county and smaller areas)</a></li>
+                                    <li><a href="/reports/lmp/lad/contents.aspx">Local Authority Profile (district/county areas)</a></li>
+                                    <li><a href="/reports/lmp/gor/contents.aspx">Regional and National Profile</a></li>
+                                    <li><a href="/reports/lmp/comb/contents.aspx">Combined Authority Profile</a></li>
+                                    <li><a href="/reports/lmp/wpca24/contents.aspx">2024 Parliamentary Constituencies Profile</a></li>
+                                    <li><a href="/reports/lmp/ward2011/contents.aspx">2011 Ward Profile</a></li>
+                                </ul>
+                                
+                                <h1>Topic reports</h1>
+                                <ul>
+                                    <li><a href="/datasets/aps218/reports/employment-by-occupation">Employment by occupation (SOC2020) by sex</a></li>
+                                    <li><a href="/datasets/aps218/reports/employment-by-status-and-occupation">Occupation (SOC2020) by sex, employment status and full/part-time</a></li>
+                                    <li><a href="/datasets/aps218/reports/employment-by-temp-workers">Temporary and permanent employees by sex and broad occupation (SOC2020)</a></li>
+                                    <li><a href="/datasets/aps218/reports/employment-by-part-time-workers">Employment by broad occupation (SOC2020) for part-time workers</a></li>
+                                    <li><a href="/datasets/aps218/reports/employment-by-sex-by-ftpt-by-emp-self">Broad occupation (SOC2020) by sex, employment status and full/part-time time-series</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a id="A5" href="/sources">Data Sources</a>
+                            <div class="sub-nav">
+                                <ul>
+                                    <li><a href="/sources/acses">Annual Civil Service Employment Survey</a></li>
+                                    <li><a href="/sources/aps">Annual Population Survey/Labour Force Survey</a></li>
+                                    <li><a href="/sources/ashe">Annual Survey of Hours and Earnings</a></li>
+                                    <li><a href="/sources/bres">Business Register and Employment Survey</a></li>
+                                    <li><a href="/sources/census">Census</a></li>
+                                    <li><a href="/sources/cc">Claimant Count</a></li>
+                                    <li><a href="/sources/dwp">DWP Benefits</a></li>
+                                    <li><a href="/sources/housing">Housing</a></li>
+                                    <li><a href="/sources/eop">Economic output and productivity</a></li>
+                                    <li><a href="/sources/jd">Jobs Density</a></li>
+                                    <li><a href="/sources/jsa">Jobseekers Allowance</a></li>
+                                    <li><a href="/sources/life">Life Events</a></li>
+                                    <li><a href="/sources/pest">Population Estimates/Projections</a></li>
+                                    <li><a href="/sources/ra">Regional Accounts</a></li>
+                                    <li><a href="/sources/ukbc">UK Business Counts</a></li>
+                                    <li><a href="/sources/wfj">Workforce Jobs</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a id="A6" href="/sources/census">Census</a>
+                            <div class="sub-nav">
+                                <ul>
+                                    <li><a href="/sources/census_2021">2021 Census</a></li>
+                                    <li><a href="/sources/census_2011">2011 Census</a></li>
+                                    <li><a href="/sources/census_2001">2001 Census</a></li>
+                                    <li><a href="/sources/census_1991">1991 Census</a></li>
+                                    <li><a href="/sources/census_1981">1981 Census</a></li>
+                                    <li><a href="/sources/census_1961">1961 Census</a></li>
+                                    <li><a href="/sources/census_1951">1951 Census</a></li>
+                                    <li><a href="/sources/census_1931">1931 Census</a></li>
+                                    <li><a href="/sources/census_1921">1921 Census</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a id="A8" href="/home/contacts.asp">Contact us</a>
+                        </li>
+
+                        <li class="nav-item nav-my-account">
+                            <a id="A7" href="/myaccount/overview.asp" title="My account overview">Sign-in</a>
+                            <div class="sub-nav">
+                                <div style="display: none;">
+                                    
+                                    <ul>
+                                        <li><a href="/myaccount/overview.asp">My account</a></li>
+                                    </ul>
+                                </div>
+                                <div id="menu-my-account-not-signed-in">
+                                    <h1>You're not signed in</h1>
+                                    <ul>
+                                        <li><a id="signin_link" href="/login/login.asp" title="Sign-in and return to the current page">Sign-in</a></li>
+                                    </ul>
+                                    <h1>New to Nomis?</h1>
+                                    <p>You can use most parts of this site without registering.</p>
+                                    <ul>
+                                        <li><a href="/myaccount/userjoin.asp">Register</a></li>
+                                        <li><a href="/home/register.asp">Benefits of registering</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <a id="nomisweb-prefs-link" title="Site settings" href="javascript: showSitePrefs();"><img src="/images/cog.gif" alt="Picture of a cog representing settings for the web site" /><span>Settings</span></a>
+
+                <!-- initialize a selector as an accessibleMegaMenu -->
+                <script type="text/javascript">
+                    var mmansi = document.getElementById('menu-my-account-not-signed-in');
+
+                    // Only change sign-in urls if the user is not logged in
+                    if (mmansi != null && mmansi != undefined && mmansi.style != undefined && mmansi.style.display != 'none') {
+                        var signina = document.getElementById('signin_link');
+                        var a7a = document.getElementById('A7');
+
+                        var signin_tgt = window.location.pathname
+                        var signin_par = window.location.search;
+                        if (signin_par.length > 0) signin_par = signin_par.substring(1); // Remove ?
+                        signin_par = encodeURIComponent(signin_par);
+
+                        var signin_hrefp = '?target=' + signin_tgt + '&params=' + signin_par;
+
+                        if (signina != null && signina != undefined) signina.href = signina.href + signin_hrefp; // Make sub-menu sign-in link target go to same page
+                        if (a7a != null && a7a != undefined) a7a.href = '/login/login.asp' + signin_hrefp; // Initially make my account link target go to same page
+                    }
+                </script>
+                <script src="/libs/jquery-accessibleMegaMenu.js"></script>
+                <script type="text/javascript">
+                    $("nav:first").accessibleMegaMenu({
+                        uuidPrefix: "accessible-megamenu",
+                        menuClass: "nav-menu",
+                        topNavItemClass: "nav-item",
+                        panelClass: "sub-nav",
+                        panelGroupClass: "sub-nav-group",
+                        hoverClass: "hover",
+                        focusClass: "focus",
+                        openClass: "open"
+                    });
+                </script>
+            </div>
+            <!-- End site navigation banner section -->
+            <!-- Begin breadcrumbs -->
+            <div id="breadcrumbs-wrapper">
+                <div id="BCBox" class="breadcrumbs" role="navigation" aria-label="Breadcrumbs"></div>
+            </div>
+            <!-- End breadcrumbs -->
+            <script type="text/javascript">
+                var BaseBreadCrumbs = new Array('/default.asp', 'home');
+                SetBreadCrumbs(null);
+            </script>
+
+            <div id="skip-to-content"><a id="content-anchor"></a></div>
+<div id="page-heading-and-sub-nav"><h1>Census 2021 Bulk Data Download</h1>
+    <div id="sub-menu-control"><input type="button" onclick="$('#sub-navigation').slideToggle();" value="Bulk Data Releases" /></div>
+    
+    <!-- Component Nav START -->
+    <nav id="sub-navigation" class="menulight" role="navigation" aria-label="Bulk Data Releases">
+    <ul class="nav-menu">
+    
+    <li class="nav-item nav-item-vertical-link"><a href="census_2021_bulk">Topic Summaries Bulk</a></li>
+    <li class="nav-item nav-item-vertical-link"><a href="census_2021st_bulk">Non-UK Born Short-term Residents Bulk</a></li>
+
+        </ul>
+        </nav>
+        <!-- Component Nav END -->
+        <script type="text/javascript">
+            $("#sub-navigation").accessibleMegaMenu({
+                uuidPrefix: "accessible-megamenu-query",
+                menuClass: "nav-menu",
+                topNavItemClass: "nav-item",
+                panelClass: "sub-nav",
+                panelGroupClass: "sub-nav-group",
+                hoverClass: "hover",
+                focusClass: "focus",
+                openClass: "open",
+                topNavItemLinkExpandableClass: "sub-nav-activator"
+            });
+        </script>
+        </div>
+</div>
+<!-- End site navigation banner section -->
+<div id="page-wrap" role="main" class="content-after-subnav">
+<!-- Begin page content -->
+
+<script type="text/javascript">
+    SetBreadCrumbs(new Array('census_2021','2021 Census','','Census 2021 Bulk Download'));
+</script>
+
+<div class="descriptive-content-section-wrapper">
+    <div class="descriptive-content-section">
+    <section aria-labelledby="p-section-0-header">
+<h1 id="p-section-0-header">2021 Census Bulk Data Download</h1>
+<p>Bulk data products package all the data from a 2021 Census dataset as a single zip file. Each zip file contains separate CSV files for each geographic type (OA, LSOA, MSOA etc).</p>
+<p>The first row of the CSV file contains the column headings with data following on row 2 onwards. Each data row contains the values for a single geographic area.</p>
+
+<p>There are two zip files for each dataset:</p><ul>
+  <li>The first contains data for the geographies in the original release: output areas, super output areas, local authorities, regions and countries.</li>
+  <li>The second contains the extra geographies added after the original release. As of 30 Jan 2023 these geographies are: 2021 wards. Other geographies will be added as they are released.</li>
+</ul>
+
+<p style="padding-top: 10px;">
+<b>Protecting personal data</b><br />
+<p>Sometimes we need to make changes to data if it is possible to identify individuals. This is known as statistical disclosure control. In Census 2021, we:</p>
+<ul>
+   <li>Swapped records (targeted record swapping), for example, if a household was likely to be identified in datasets because it has unusual characteristics, we swapped the record with a similar one from a nearby small area. Very unusual households could be swapped with one in a nearby local authority.</li>
+   <li>Added small changes to some counts (cell key perturbation), for example, we might change a count of four to a three or a five. This might make small differences between tables depending on how the data are broken down when we applied perturbation.</li>
+</ul>
+
+
+<table width="100%">
+
+<tr><td colspan="4"><a name="Demographyandmigration" id="Demographyandmigration"></a><h2>Demography and migration</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS001</strong></td>
+     <td valign="top" nowrap>Number of usual residents in households and communal establishments</td>
+    	 <td valign="top" nowrap><a title="TS001 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS001 Output area');" href="/output/census/2021/census2021-ts001.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts001.zip</a></td>
+       <td valign="top" nowrap><a title="TS001 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS001 Extra area');" href="/output/census/2021/census2021-ts001-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts001-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS002</strong></td>
+     <td valign="top" nowrap>Legal partnership status</td>
+    	 <td valign="top" nowrap><a title="TS002 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS002 Output area');" href="/output/census/2021/census2021-ts002.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts002.zip</a></td>
+       <td valign="top" nowrap><a title="TS002 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS002 Extra area');" href="/output/census/2021/census2021-ts002-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts002-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS003</strong></td>
+     <td valign="top" nowrap>Household composition</td>
+    	 <td valign="top" nowrap><a title="TS003 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS003 Output area');" href="/output/census/2021/census2021-ts003.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts003.zip</a></td>
+       <td valign="top" nowrap><a title="TS003 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS003 Extra area');" href="/output/census/2021/census2021-ts003-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts003-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS004</strong></td>
+     <td valign="top" nowrap>Country of birth</td>
+    	 <td valign="top" nowrap><a title="TS004 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS004 Output area');" href="/output/census/2021/census2021-ts004.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts004.zip</a></td>
+       <td valign="top" nowrap><a title="TS004 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS004 Extra area');" href="/output/census/2021/census2021-ts004-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts004-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS005</strong></td>
+     <td valign="top" nowrap>Passports held</td>
+    	 <td valign="top" nowrap><a title="TS005 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS005 Output area');" href="/output/census/2021/census2021-ts005.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts005.zip</a></td>
+       <td valign="top" nowrap><a title="TS005 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS005 Extra area');" href="/output/census/2021/census2021-ts005-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts005-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS006</strong></td>
+     <td valign="top" nowrap>Population density</td>
+    	 <td valign="top" nowrap><a title="TS006 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS006 Output area');" href="/output/census/2021/census2021-ts006.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts006.zip</a></td>
+       <td valign="top" nowrap><a title="TS006 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS006 Extra area');" href="/output/census/2021/census2021-ts006-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts006-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS007</strong></td>
+     <td valign="top" nowrap>Age by single year of age</td>
+    	 <td valign="top" nowrap><a title="TS007 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS007 Output area');" href="/output/census/2021/census2021-ts007.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts007.zip</a></td>
+       <td valign="top" nowrap><a title="TS007 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS007 Extra area');" href="/output/census/2021/census2021-ts007-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts007-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS007A</strong></td>
+     <td valign="top" nowrap>Age by five-year age bands</td>
+    	<td valign="top" nowrap><a title="TS007A - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS007A Output area');" href="/output/census/2021/census2021-ts007a.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts007a.zip</a></td>
+</tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS008</strong></td>
+     <td valign="top" nowrap>Sex</td>
+    	 <td valign="top" nowrap><a title="TS008 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS008 Output area');" href="/output/census/2021/census2021-ts008.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts008.zip</a></td>
+       <td valign="top" nowrap><a title="TS008 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS008 Extra area');" href="/output/census/2021/census2021-ts008-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts008-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS009</strong></td>
+     <td valign="top" nowrap>Sex by single year of age</td>
+    	<td valign="top" nowrap><a title="TS009 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS009 Output area');" href="/output/census/2021/census2021-ts009.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts009.zip</a></td>
+</tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS010</strong></td>
+     <td valign="top" nowrap>Living arrangements</td>
+    	 <td valign="top" nowrap><a title="TS010 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS010 Output area');" href="/output/census/2021/census2021-ts010.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts010.zip</a></td>
+       <td valign="top" nowrap><a title="TS010 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS010 Extra area');" href="/output/census/2021/census2021-ts010-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts010-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS011</strong></td>
+     <td valign="top" nowrap>Households by deprivation dimensions</td>
+    	 <td valign="top" nowrap><a title="TS011 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS011 Output area');" href="/output/census/2021/census2021-ts011.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts011.zip</a></td>
+       <td valign="top" nowrap><a title="TS011 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS011 Extra area');" href="/output/census/2021/census2021-ts011-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts011-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS012</strong></td>
+     <td valign="top" nowrap>Country of birth (detailed)</td>
+    	<td valign="top" nowrap><a title="TS012 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS012 Output area');" href="/output/census/2021/census2021-ts012.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts012.zip</a></td>
+</tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS013</strong></td>
+     <td valign="top" nowrap>Passports held (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS013 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS013 Output area');" href="/output/census/2021/census2021-ts013.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts013.zip</a></td>
+       <td valign="top" nowrap><a title="TS013 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS013 Extra area');" href="/output/census/2021/census2021-ts013-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts013-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS015</strong></td>
+     <td valign="top" nowrap>Year of arrival in UK</td>
+    	 <td valign="top" nowrap><a title="TS015 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS015 Output area');" href="/output/census/2021/census2021-ts015.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts015.zip</a></td>
+       <td valign="top" nowrap><a title="TS015 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS015 Extra area');" href="/output/census/2021/census2021-ts015-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts015-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS016</strong></td>
+     <td valign="top" nowrap>Length of residence</td>
+    	 <td valign="top" nowrap><a title="TS016 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS016 Output area');" href="/output/census/2021/census2021-ts016.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts016.zip</a></td>
+       <td valign="top" nowrap><a title="TS016 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS016 Extra area');" href="/output/census/2021/census2021-ts016-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts016-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS017</strong></td>
+     <td valign="top" nowrap>Household size</td>
+    	 <td valign="top" nowrap><a title="TS017 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS017 Output area');" href="/output/census/2021/census2021-ts017.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts017.zip</a></td>
+       <td valign="top" nowrap><a title="TS017 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS017 Extra area');" href="/output/census/2021/census2021-ts017-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts017-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS018</strong></td>
+     <td valign="top" nowrap>Age of arrival in the UK</td>
+    	 <td valign="top" nowrap><a title="TS018 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS018 Output area');" href="/output/census/2021/census2021-ts018.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts018.zip</a></td>
+       <td valign="top" nowrap><a title="TS018 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS018 Extra area');" href="/output/census/2021/census2021-ts018-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts018-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS019</strong></td>
+     <td valign="top" nowrap>Migrant Indicator</td>
+    	 <td valign="top" nowrap><a title="TS019 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS019 Output area');" href="/output/census/2021/census2021-ts019.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts019.zip</a></td>
+       <td valign="top" nowrap><a title="TS019 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS019 Extra area');" href="/output/census/2021/census2021-ts019-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts019-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS020</strong></td>
+     <td valign="top" nowrap>Number of non-UK short-term residents by sex</td>
+    	 <td valign="top" nowrap><a title="TS020 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS020 Output area');" href="/output/census/2021/census2021-ts020.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts020.zip</a></td>
+       <td valign="top" nowrap><a title="TS020 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS020 Extra area');" href="/output/census/2021/census2021-ts020-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts020-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS041</strong></td>
+     <td valign="top" nowrap>Number of Households</td>
+    	 <td valign="top" nowrap><a title="TS041 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS041 Output area');" href="/output/census/2021/census2021-ts041.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts041.zip</a></td>
+       <td valign="top" nowrap><a title="TS041 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS041 Extra area');" href="/output/census/2021/census2021-ts041-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts041-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="UKarmedforcesveterans" id="UKarmedforcesveterans"></a><h2>UK armed forces veterans</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS071</strong></td>
+     <td valign="top" nowrap>Previously served in the UK armed forces</td>
+    	 <td valign="top" nowrap><a title="TS071 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS071 Output area');" href="/output/census/2021/census2021-ts071.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts071.zip</a></td>
+       <td valign="top" nowrap><a title="TS071 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS071 Extra area');" href="/output/census/2021/census2021-ts071-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts071-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS072</strong></td>
+     <td valign="top" nowrap>Number of people in household who have previously served in UK armed forces</td>
+    	 <td valign="top" nowrap><a title="TS072 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS072 Output area');" href="/output/census/2021/census2021-ts072.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts072.zip</a></td>
+       <td valign="top" nowrap><a title="TS072 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS072 Extra area');" href="/output/census/2021/census2021-ts072-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts072-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS073</strong></td>
+     <td valign="top" nowrap>Population who have previously served in UK armed forces in communal establishments and in households</td>
+    	 <td valign="top" nowrap><a title="TS073 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS073 Output area');" href="/output/census/2021/census2021-ts073.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts073.zip</a></td>
+       <td valign="top" nowrap><a title="TS073 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS073 Extra area');" href="/output/census/2021/census2021-ts073-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts073-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS074</strong></td>
+     <td valign="top" nowrap>Household Reference Person indicator of previous service in UK armed forces</td>
+    	 <td valign="top" nowrap><a title="TS074 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS074 Output area');" href="/output/census/2021/census2021-ts074.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts074.zip</a></td>
+       <td valign="top" nowrap><a title="TS074 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS074 Extra area');" href="/output/census/2021/census2021-ts074-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts074-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="Ethnicity,Identity,LanguageandReligion" id="Ethnicity,Identity,LanguageandReligion"></a><h2>Ethnicity, Identity, Language and Religion</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS021</strong></td>
+     <td valign="top" nowrap>Ethnic group</td>
+    	 <td valign="top" nowrap><a title="TS021 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS021 Output area');" href="/output/census/2021/census2021-ts021.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts021.zip</a></td>
+       <td valign="top" nowrap><a title="TS021 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS021 Extra area');" href="/output/census/2021/census2021-ts021-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts021-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS022</strong></td>
+     <td valign="top" nowrap>Ethnic group (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS022 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS022 Output area');" href="/output/census/2021/census2021-ts022.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts022.zip</a></td>
+       <td valign="top" nowrap><a title="TS022 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS022 Extra area');" href="/output/census/2021/census2021-ts022-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts022-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS023</strong></td>
+     <td valign="top" nowrap>Multiple ethnic group</td>
+    	 <td valign="top" nowrap><a title="TS023 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS023 Output area');" href="/output/census/2021/census2021-ts023.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts023.zip</a></td>
+       <td valign="top" nowrap><a title="TS023 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS023 Extra area');" href="/output/census/2021/census2021-ts023-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts023-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS024</strong></td>
+     <td valign="top" nowrap>Main language (detailed)</td>
+    	<td valign="top" nowrap><a title="TS024 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS024 Output area');" href="/output/census/2021/census2021-ts024.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts024.zip</a></td>
+</tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS025</strong></td>
+     <td valign="top" nowrap>Household language</td>
+    	 <td valign="top" nowrap><a title="TS025 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS025 Output area');" href="/output/census/2021/census2021-ts025.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts025.zip</a></td>
+       <td valign="top" nowrap><a title="TS025 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS025 Extra area');" href="/output/census/2021/census2021-ts025-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts025-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS026</strong></td>
+     <td valign="top" nowrap>Multiple main languages in households</td>
+    	 <td valign="top" nowrap><a title="TS026 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS026 Output area');" href="/output/census/2021/census2021-ts026.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts026.zip</a></td>
+       <td valign="top" nowrap><a title="TS026 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS026 Extra area');" href="/output/census/2021/census2021-ts026-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts026-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS027</strong></td>
+     <td valign="top" nowrap>National identity - UK</td>
+    	 <td valign="top" nowrap><a title="TS027 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS027 Output area');" href="/output/census/2021/census2021-ts027.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts027.zip</a></td>
+       <td valign="top" nowrap><a title="TS027 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS027 Extra area');" href="/output/census/2021/census2021-ts027-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts027-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS028</strong></td>
+     <td valign="top" nowrap>National identity (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS028 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS028 Output area');" href="/output/census/2021/census2021-ts028.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts028.zip</a></td>
+       <td valign="top" nowrap><a title="TS028 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS028 Extra area');" href="/output/census/2021/census2021-ts028-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts028-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS029</strong></td>
+     <td valign="top" nowrap>Proficiency in english</td>
+    	 <td valign="top" nowrap><a title="TS029 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS029 Output area');" href="/output/census/2021/census2021-ts029.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts029.zip</a></td>
+       <td valign="top" nowrap><a title="TS029 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS029 Extra area');" href="/output/census/2021/census2021-ts029-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts029-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS030</strong></td>
+     <td valign="top" nowrap>Religion</td>
+    	 <td valign="top" nowrap><a title="TS030 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS030 Output area');" href="/output/census/2021/census2021-ts030.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts030.zip</a></td>
+       <td valign="top" nowrap><a title="TS030 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS030 Extra area');" href="/output/census/2021/census2021-ts030-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts030-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS031</strong></td>
+     <td valign="top" nowrap>Religion (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS031 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS031 Output area');" href="/output/census/2021/census2021-ts031.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts031.zip</a></td>
+       <td valign="top" nowrap><a title="TS031 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS031 Extra area');" href="/output/census/2021/census2021-ts031-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts031-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS075</strong></td>
+     <td valign="top" nowrap>Multi religion households</td>
+    	 <td valign="top" nowrap><a title="TS075 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS075 Output area');" href="/output/census/2021/census2021-ts075.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts075.zip</a></td>
+       <td valign="top" nowrap><a title="TS075 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS075 Extra area');" href="/output/census/2021/census2021-ts075-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts075-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="WelshlanguageinWales" id="WelshlanguageinWales"></a><h2>Welsh language in Wales</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS032</strong></td>
+     <td valign="top" nowrap>Welsh language skills (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS032 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS032 Output area');" href="/output/census/2021/census2021-ts032.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts032.zip</a></td>
+       <td valign="top" nowrap><a title="TS032 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS032 Extra area');" href="/output/census/2021/census2021-ts032-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts032-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS033</strong></td>
+     <td valign="top" nowrap>Welsh language skills (speaking)</td>
+    	 <td valign="top" nowrap><a title="TS033 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS033 Output area');" href="/output/census/2021/census2021-ts033.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts033.zip</a></td>
+       <td valign="top" nowrap><a title="TS033 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS033 Extra area');" href="/output/census/2021/census2021-ts033-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts033-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS034</strong></td>
+     <td valign="top" nowrap>Welsh language skills (writing)</td>
+    	 <td valign="top" nowrap><a title="TS034 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS034 Output area');" href="/output/census/2021/census2021-ts034.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts034.zip</a></td>
+       <td valign="top" nowrap><a title="TS034 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS034 Extra area');" href="/output/census/2021/census2021-ts034-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts034-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS035</strong></td>
+     <td valign="top" nowrap>Welsh language skills (reading)</td>
+    	 <td valign="top" nowrap><a title="TS035 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS035 Output area');" href="/output/census/2021/census2021-ts035.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts035.zip</a></td>
+       <td valign="top" nowrap><a title="TS035 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS035 Extra area');" href="/output/census/2021/census2021-ts035-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts035-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS036</strong></td>
+     <td valign="top" nowrap>Welsh language skills (understanding)</td>
+    	 <td valign="top" nowrap><a title="TS036 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS036 Output area');" href="/output/census/2021/census2021-ts036.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts036.zip</a></td>
+       <td valign="top" nowrap><a title="TS036 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS036 Extra area');" href="/output/census/2021/census2021-ts036-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts036-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS076</strong></td>
+     <td valign="top" nowrap>Welsh language skills (speaking) by single year of age</td>
+    	<td valign="top" nowrap><a title="TS076 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS076 Output area');" href="/output/census/2021/census2021-ts076.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts076.zip</a></td>
+</tr>
+
+<tr><td colspan="4"><a name="WorkandTravel" id="WorkandTravel"></a><h2>Work and Travel</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS058</strong></td>
+     <td valign="top" nowrap>Distance travelled to work</td>
+    	 <td valign="top" nowrap><a title="TS058 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS058 Output area');" href="/output/census/2021/census2021-ts058.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts058.zip</a></td>
+       <td valign="top" nowrap><a title="TS058 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS058 Extra area');" href="/output/census/2021/census2021-ts058-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts058-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS059</strong></td>
+     <td valign="top" nowrap>Hours worked</td>
+    	 <td valign="top" nowrap><a title="TS059 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS059 Output area');" href="/output/census/2021/census2021-ts059.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts059.zip</a></td>
+       <td valign="top" nowrap><a title="TS059 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS059 Extra area');" href="/output/census/2021/census2021-ts059-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts059-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS060</strong></td>
+     <td valign="top" nowrap>Industry</td>
+    	 <td valign="top" nowrap><a title="TS060 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS060 Output area');" href="/output/census/2021/census2021-ts060.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts060.zip</a></td>
+       <td valign="top" nowrap><a title="TS060 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS060 Extra area');" href="/output/census/2021/census2021-ts060-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts060-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS061</strong></td>
+     <td valign="top" nowrap>Method of travel to work</td>
+    	 <td valign="top" nowrap><a title="TS061 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS061 Output area');" href="/output/census/2021/census2021-ts061.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts061.zip</a></td>
+       <td valign="top" nowrap><a title="TS061 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS061 Extra area');" href="/output/census/2021/census2021-ts061-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts061-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS062</strong></td>
+     <td valign="top" nowrap>NS-SeC</td>
+    	 <td valign="top" nowrap><a title="TS062 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS062 Output area');" href="/output/census/2021/census2021-ts062.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts062.zip</a></td>
+       <td valign="top" nowrap><a title="TS062 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS062 Extra area');" href="/output/census/2021/census2021-ts062-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts062-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS063</strong></td>
+     <td valign="top" nowrap>Occupation</td>
+    	 <td valign="top" nowrap><a title="TS063 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS063 Output area');" href="/output/census/2021/census2021-ts063.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts063.zip</a></td>
+       <td valign="top" nowrap><a title="TS063 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS063 Extra area');" href="/output/census/2021/census2021-ts063-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts063-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS064</strong></td>
+     <td valign="top" nowrap>Occupation - minor groups</td>
+    	 <td valign="top" nowrap><a title="TS064 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS064 Output area');" href="/output/census/2021/census2021-ts064.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts064.zip</a></td>
+       <td valign="top" nowrap><a title="TS064 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS064 Extra area');" href="/output/census/2021/census2021-ts064-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts064-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS065</strong></td>
+     <td valign="top" nowrap>Unemployment history</td>
+    	 <td valign="top" nowrap><a title="TS065 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS065 Output area');" href="/output/census/2021/census2021-ts065.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts065.zip</a></td>
+       <td valign="top" nowrap><a title="TS065 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS065 Extra area');" href="/output/census/2021/census2021-ts065-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts065-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS066</strong></td>
+     <td valign="top" nowrap>Economic activity status</td>
+    	 <td valign="top" nowrap><a title="TS066 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS066 Output area');" href="/output/census/2021/census2021-ts066.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts066.zip</a></td>
+       <td valign="top" nowrap><a title="TS066 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS066 Extra area');" href="/output/census/2021/census2021-ts066-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts066-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="Housing" id="Housing"></a><h2>Housing</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS044</strong></td>
+     <td valign="top" nowrap>Accommodation type</td>
+    	 <td valign="top" nowrap><a title="TS044 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS044 Output area');" href="/output/census/2021/census2021-ts044.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts044.zip</a></td>
+       <td valign="top" nowrap><a title="TS044 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS044 Extra area');" href="/output/census/2021/census2021-ts044-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts044-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS045</strong></td>
+     <td valign="top" nowrap>Car or van availability</td>
+    	 <td valign="top" nowrap><a title="TS045 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS045 Output area');" href="/output/census/2021/census2021-ts045.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts045.zip</a></td>
+       <td valign="top" nowrap><a title="TS045 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS045 Extra area');" href="/output/census/2021/census2021-ts045-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts045-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS046</strong></td>
+     <td valign="top" nowrap>Central heating</td>
+    	 <td valign="top" nowrap><a title="TS046 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS046 Output area');" href="/output/census/2021/census2021-ts046.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts046.zip</a></td>
+       <td valign="top" nowrap><a title="TS046 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS046 Extra area');" href="/output/census/2021/census2021-ts046-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts046-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS047</strong></td>
+     <td valign="top" nowrap>Communal establishment residents by age and sex</td>
+    	 <td valign="top" nowrap><a title="TS047 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS047 Output area');" href="/output/census/2021/census2021-ts047.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts047.zip</a></td>
+       <td valign="top" nowrap><a title="TS047 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS047 Extra area');" href="/output/census/2021/census2021-ts047-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts047-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS048</strong></td>
+     <td valign="top" nowrap>Communal establishment management and type</td>
+    	 <td valign="top" nowrap><a title="TS048 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS048 Output area');" href="/output/census/2021/census2021-ts048.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts048.zip</a></td>
+       <td valign="top" nowrap><a title="TS048 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS048 Extra area');" href="/output/census/2021/census2021-ts048-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts048-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS050</strong></td>
+     <td valign="top" nowrap>Number of bedrooms</td>
+    	 <td valign="top" nowrap><a title="TS050 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS050 Output area');" href="/output/census/2021/census2021-ts050.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts050.zip</a></td>
+       <td valign="top" nowrap><a title="TS050 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS050 Extra area');" href="/output/census/2021/census2021-ts050-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts050-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS051</strong></td>
+     <td valign="top" nowrap>Number of rooms</td>
+    	 <td valign="top" nowrap><a title="TS051 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS051 Output area');" href="/output/census/2021/census2021-ts051.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts051.zip</a></td>
+       <td valign="top" nowrap><a title="TS051 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS051 Extra area');" href="/output/census/2021/census2021-ts051-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts051-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS052</strong></td>
+     <td valign="top" nowrap>Occupancy rating for bedrooms</td>
+    	 <td valign="top" nowrap><a title="TS052 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS052 Output area');" href="/output/census/2021/census2021-ts052.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts052.zip</a></td>
+       <td valign="top" nowrap><a title="TS052 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS052 Extra area');" href="/output/census/2021/census2021-ts052-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts052-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS053</strong></td>
+     <td valign="top" nowrap>Occupancy rating for rooms</td>
+    	 <td valign="top" nowrap><a title="TS053 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS053 Output area');" href="/output/census/2021/census2021-ts053.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts053.zip</a></td>
+       <td valign="top" nowrap><a title="TS053 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS053 Extra area');" href="/output/census/2021/census2021-ts053-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts053-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS054</strong></td>
+     <td valign="top" nowrap>Tenure</td>
+    	 <td valign="top" nowrap><a title="TS054 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS054 Output area');" href="/output/census/2021/census2021-ts054.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts054.zip</a></td>
+       <td valign="top" nowrap><a title="TS054 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS054 Extra area');" href="/output/census/2021/census2021-ts054-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts054-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS055</strong></td>
+     <td valign="top" nowrap>Purpose of second address</td>
+    	 <td valign="top" nowrap><a title="TS055 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS055 Output area');" href="/output/census/2021/census2021-ts055.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts055.zip</a></td>
+       <td valign="top" nowrap><a title="TS055 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS055 Extra area');" href="/output/census/2021/census2021-ts055-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts055-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS056</strong></td>
+     <td valign="top" nowrap>Second address indicator</td>
+    	 <td valign="top" nowrap><a title="TS056 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS056 Output area');" href="/output/census/2021/census2021-ts056.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts056.zip</a></td>
+       <td valign="top" nowrap><a title="TS056 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS056 Extra area');" href="/output/census/2021/census2021-ts056-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts056-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="SexualOrientationandGenderIdentity" id="SexualOrientationandGenderIdentity"></a><h2>Sexual Orientation and Gender Identity</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS079</strong></td>
+     <td valign="top" nowrap>Sexual orientation (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS079 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS079 Output area');" href="/output/census/2021/census2021-ts079.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts079.zip</a></td>
+       <td valign="top" nowrap><a title="TS079 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS079 Extra area');" href="/output/census/2021/census2021-ts079-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts079-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS070</strong></td>
+     <td valign="top" nowrap>Gender identity (detailed)</td>
+    	 <td valign="top" nowrap><a title="TS070 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS070 Output area');" href="/output/census/2021/census2021-ts070.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts070.zip</a></td>
+       <td valign="top" nowrap><a title="TS070 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS070 Extra area');" href="/output/census/2021/census2021-ts070-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts070-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS077</strong></td>
+     <td valign="top" nowrap>Sexual orientation</td>
+    	 <td valign="top" nowrap><a title="TS077 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS077 Output area');" href="/output/census/2021/census2021-ts077.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts077.zip</a></td>
+       <td valign="top" nowrap><a title="TS077 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS077 Extra area');" href="/output/census/2021/census2021-ts077-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts077-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS078</strong></td>
+     <td valign="top" nowrap>Gender identity</td>
+    	 <td valign="top" nowrap><a title="TS078 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS078 Output area');" href="/output/census/2021/census2021-ts078.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts078.zip</a></td>
+       <td valign="top" nowrap><a title="TS078 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS078 Extra area');" href="/output/census/2021/census2021-ts078-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts078-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="Education" id="Education"></a><h2>Education</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS067</strong></td>
+     <td valign="top" nowrap>Highest level of qualification</td>
+    	 <td valign="top" nowrap><a title="TS067 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS067 Output area');" href="/output/census/2021/census2021-ts067.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts067.zip</a></td>
+       <td valign="top" nowrap><a title="TS067 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS067 Extra area');" href="/output/census/2021/census2021-ts067-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts067-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS068</strong></td>
+     <td valign="top" nowrap>Schoolchildren and full-time students</td>
+    	 <td valign="top" nowrap><a title="TS068 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS068 Output area');" href="/output/census/2021/census2021-ts068.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts068.zip</a></td>
+       <td valign="top" nowrap><a title="TS068 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS068 Extra area');" href="/output/census/2021/census2021-ts068-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts068-extra.zip</a></td> 
+    </tr>
+
+<tr><td colspan="4"><a name="Health" id="Health"></a><h2>Health</h2></td></tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS037</strong></td>
+     <td valign="top" nowrap>General health</td>
+    	 <td valign="top" nowrap><a title="TS037 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS037 Output area');" href="/output/census/2021/census2021-ts037.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts037.zip</a></td>
+       <td valign="top" nowrap><a title="TS037 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS037 Extra area');" href="/output/census/2021/census2021-ts037-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts037-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS038</strong></td>
+     <td valign="top" nowrap>Disability</td>
+    	 <td valign="top" nowrap><a title="TS038 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS038 Output area');" href="/output/census/2021/census2021-ts038.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts038.zip</a></td>
+       <td valign="top" nowrap><a title="TS038 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS038 Extra area');" href="/output/census/2021/census2021-ts038-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts038-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS039</strong></td>
+     <td valign="top" nowrap>Provision of unpaid care</td>
+    	 <td valign="top" nowrap><a title="TS039 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS039 Output area');" href="/output/census/2021/census2021-ts039.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts039.zip</a></td>
+       <td valign="top" nowrap><a title="TS039 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS039 Extra area');" href="/output/census/2021/census2021-ts039-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts039-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS040</strong></td>
+     <td valign="top" nowrap>Number of disabled people in the household</td>
+    	 <td valign="top" nowrap><a title="TS040 - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS040 Output area');" href="/output/census/2021/census2021-ts040.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts040.zip</a></td>
+       <td valign="top" nowrap><a title="TS040 - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS040 Extra area');" href="/output/census/2021/census2021-ts040-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts040-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS037ASP</strong></td>
+     <td valign="top" nowrap>General health - age-standardised proportions</td>
+    	 <td valign="top" nowrap><a title="TS037ASP - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS037ASP Output area');" href="/output/census/2021/census2021-ts037asp.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts037asp.zip</a></td>
+       <td valign="top" nowrap><a title="TS037ASP - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS037ASP Extra area');" href="/output/census/2021/census2021-ts037asp-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts037asp-extra.zip</a></td> 
+    </tr>
+
+<tr style="background: #f3f3f3;">
+    <td valign="top" nowrap style="color: #333333;"><strong>TS038ASP</strong></td>
+     <td valign="top" nowrap>Disability - age-standardised proportions</td>
+    	 <td valign="top" nowrap><a title="TS038ASP - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS038ASP Output area');" href="/output/census/2021/census2021-ts038asp.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts038asp.zip</a></td>
+       <td valign="top" nowrap><a title="TS038ASP - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS038ASP Extra area');" href="/output/census/2021/census2021-ts038asp-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts038asp-extra.zip</a></td> 
+    </tr>
+
+<tr>
+    <td valign="top" nowrap style="color: #333333;"><strong>TS039ASP</strong></td>
+     <td valign="top" nowrap>Provision of unpaid care - age-standardised proportions</td>
+    	 <td valign="top" nowrap><a title="TS039ASP - Output areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS039ASP Output area');" href="/output/census/2021/census2021-ts039asp.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts039asp.zip</a></td>
+       <td valign="top" nowrap><a title="TS039ASP - Extra areas" onclick="ga('send', 'event', 'Census 2021', '2021 Census Bulk Download', 'TS039ASP Extra area');" href="/output/census/2021/census2021-ts039asp-extra.zip"><img border="0" width="16" height="16" src="/images/icons/zipicon.png" />census2021-ts039asp-extra.zip</a></td> 
+    </tr>
+
+</table>
+
+    </section>
+	</div>
+</div>
+    </div>
+	<!-- Begin footer -->
+    <footer style="clear:both;">
+    <div id="nomis-footer-wrapper" role="contentinfo">
+		<ul>
+            <li><a href="/api">API</a></li>
+            <li><a href="/home/sitemap.asp" accesskey="3" id="Site-map">Site map</a></li>
+            <li><a href="/home/news.asp" id="News">News</a></li>
+            <li><a href="/home/accessibility.asp">Accessibility</a></li>
+            <li><a href="/home/accesskeys.asp" id="access-keys" accesskey="0">Access keys</a></li>
+            <li><a href="/home/privacy.asp" id="Privacy-and-Cookies">Privacy and Cookies</a></li>
+            <li><a href="/home/terms.asp" id="Terms-and-Conditions" accesskey="8">Terms and Conditions</a></li>
+			<li><a href="/home/copyright.asp" id="Crown-Copyright">&copy; Crown Copyright</a></li>
+		</ul>
+
+        
+        <div id="durham-uni-logo-container">
+            <a href="http://www.dur.ac.uk"><img border="0" src="/images/du_logo.png" alt="Durham University Logo" /></a>
+        </div>
+    </div>
+
+    </footer>
+	<!-- End footer -->
+
+    <!-- Begin Site-wide Information Popup Box -->
+        <div id="modalBack" role="alert" aria-labelledby="modalDivTitle" style="display: none;">
+            <div id="modalDiv" tabindex="-1">
+                <div id="modalDivHead">
+                     <h2 id="modalDivTitle"></h2>
+	                <div id="modalDivTools"><input type="button" title="Close this pop-up (esc)" id="modalCloseButton" value="Close" onclick="modalClose();" class="modalDivTool" /></div>
+                </div>
+	            <div id="modalBusy"><p>Please wait...</p></div>
+	            <div id="modalDivBody"></div>
+            </div>
+        </div>
+        <!-- End Site-wide Information Popup Box -->
+        <!-- PRE-END-NOMISWEB-PAGE-DIV-HOOK -->
+    </div>
+    
+    <script type="text/javascript" src="/js/tips.js"></script>
+    <!-- End Nomisweb Page div -->
+  </body>
+</html>

@@ -1,0 +1,90 @@
+RUBRIC ĐỒ ÁN CUỐI KỲ
+PHẦN 1: YÊU CẦU CHUNG CỦA ĐỒ ÁN
+-----------------------------------------------------
+Mỗi nhóm cần thực hiện một Pipeline gồm 4 bước bắt buộc:
+
+1. Thu thập và tiền xử lý dữ liệu Lấy dữ liệu từ Kaggle, World Bank, WHO, GitHub hoặc tự crawl (phải dẫn link/minh chứng cụ thể). Dữ liệu thô phải có ít nhất 5.000 dòng và nhiều bảng để thực hiện kết nối (Join/Merge). Phải có bước làm sạch dữ liệu (xử lý missing value, outlier, tạo trường dữ liệu tính toán mới, v.v...).
+2. Khám phá dữ liệu (EDA) Sử dụng Matplotlib/Seaborn (Python) hoặc ggplot2 (R) để vẽ các biểu đồ tĩnh cơ bản phân tích phân phối dữ liệu.
+
+3. Xây dựng Dashboard trực quan hóa tương tác (Công cụ bắt buộc) Dùng dữ liệu đã làm sạch đẩy lên một trong các công cụ: Tableau (Tableau Public), Streamlit + Plotly, Power BI, Elasticsearch + Kibana, Dash (Plotly), Metabase, Apache Superset, Grafana. Dashboard phải có ít nhất tính năng lọc, drill-down, và ít nhất 8 loại biểu đồ khác nhau, bao gồm 1 bản đồ.
+
+4. Insight & Dự báo Sử dụng Hồi quy tuyến tính (Linear) hoặc Hồi quy Logistic để thêm một biểu đồ dự báo xu hướng vào Dashboard.
+
+
+YÊU CẦU DATASET
+-----------------------------------------------------
+- Nguồn: Kaggle, World Bank, WHO, GitHub hoặc tự crawl (phải dẫn link/minh chứng cụ thể).
+- Kích thước tối thiểu: 5.000 dòng.
+- Cấu trúc: Phải có nhiều bảng (tables) để thực hiện thao tác kết nối (Join/Merge).
+- Lưu ý: Không thỏa mãn điều kiện về Dataset (dưới 5.000 dòng, chỉ có 1 bảng đơn giản) -> Đồ án không hợp lệ.
+
+
+QUY TRÌNH XỬ LÝ (PIPELINE) BẮT BUỘC
+-----------------------------------------------------
+Bắt buộc sử dụng Python hoặc R để viết script tiền xử lý. Phải mô tả
+rõ các bước:
+- Làm sạch dữ liệu (xử lý missing value, outlier).
+- Tạo trường dữ liệu tính toán mới (Calculated fields).
+- Khám phá dữ liệu (EDA) bằng các thư viện vẽ biểu đồ tĩnh (Matplotlib, Seaborn, ggplot2, v.v...).
+
+
+CẤU TRÚC BÁO CÁO BẮT BUỘC (Tối thiểu 40 trang)
+-----------------------------------------------------
+Định dạng chuẩn khoa học (IEEE), tối thiểu gồm các phần:
+1. Giới thiệu đề tài & Mô tả tập dữ liệu.
+2. Quy trình tiền xử lý & Khám phá dữ liệu (EDA).
+3. Thiết kế Dashboard (Giao diện, luồng tương tác, giải thích ý nghĩa các biểu đồ).
+4. Khai phá Insight (Kể chuyện bằng dữ liệu - Storytelling).
+5. Mô hình dự báo (Mô tả thuật toán Hồi quy tuyến tính/Logistic và kết quả).
+6. Hướng dẫn cài đặt/sử dụng & Link Video Demo (Bắt buộc có Video backup tóm tắt).
+7. Kết luận & Tài liệu tham khảo.
+
+
+II. BAREM CHI TIẾT (10 ĐIỂM)
+=====================================================
+
+1. Thu thập và Tiền xử lý dữ liệu — 2.5 điểm
+-----------------------------------------------------
+- Xác định bài toán & Dataset (0.5đ) Trình bày rõ mục tiêu phân tích. Dữ liệu hợp lệ (>=5.000 dòng, >=3 bảng). Nêu rõ nguồn và từ điển dữ liệu (Data dictionary).
+
+- Làm sạch dữ liệu - Code (0.5đ) Code Python/R xử lý triệt để Missing values, Outliers, chuẩn hóa định dạng ngày tháng/chuỗi.
+
+- Biến đổi dữ liệu - Code (0.75đ) Thực hiện Join/Merge các bảng chính xác. Tạo thêm được các trường dữ liệu tính toán mới có ý nghĩa (Calculated fields).
+
+- Khám phá dữ liệu - EDA (0.75đ) Dùng Matplotlib/Seaborn/ggplot2 vẽ ít nhất 3-5 biểu đồ tĩnh để phân tích phân phối dữ liệu trước khi đưa lên Dashboard.
+
+
+2. Thiết kế và Xây dựng Dashboard (Trọng tâm) — 3.5 điểm
+-----------------------------------------------------
+- Giao diện & UI/UX (0.5đ) Bố cục (Layout) hợp lý, màu sắc hài hòa, dễ nhìn. Có tiêu đề, chú thích (Legend) rõ ràng cho người dùng cuối.
+
+- Đa dạng biểu đồ (1.0đ) Sử dụng ít nhất 8 loại biểu đồ khác nhau (Bar, Line, Pie, Scatter, Heatmap, Tree map...). Chọn đúng loại biểu đồ cho đúng loại dữ liệu.
+
+- Yêu cầu Bản đồ - Map (0.5đ) Thiết kế thành công ít nhất 1 biểu đồ dạng Bản đồ (Geographic Map) thể hiện sự phân bố không gian.
+
+- Tính tương tác (1.5đ) Dashboard vận hành mượt mà các tính năng: Lọc (Filters nhiều cấp), Drill-down, Tooltip khi hover chuột. Các biểu đồ có sự liên kết (Cross-filtering).
+
+
+3. Phân tích Insight & Dự báo — 2.0 điểm
+-----------------------------------------------------
+- Khai phá Insight (1.0đ) Không chỉ show biểu đồ mà phải rút ra được câu chuyện (Storytelling). Phân tích được nguyên nhân, xu hướng từ Dashboard.
+
+- Mô hình Dự báo (0.5đ) Áp dụng đúng thuật toán Hồi quy tuyến tính (Linear) hoặc Hồi quy Logistic.
+
+- Trực quan Dự báo (0.5đ) Tích hợp thành công kết quả dự báo (đường xu hướng, phân lớp rủi ro...) lên một biểu đồ trực quan trong Dashboard.
+
+
+4. Báo cáo khoa học & Demo ứng dụng — 2.0 điểm
+-----------------------------------------------------
+- Báo cáo chuẩn khoa học (1.0đ) Đúng cấu trúc, trình bày rõ ràng (pipeline, sơ đồ hệ thống), trích dẫn IEEE, giải thích logic chọn biểu đồ. Có minh họa code/pseudo-code.
+
+- Ứng dụng Demo (1.0đ) Ứng dụng/Dashboard chạy trực tiếp mượt mà. Kịch bản demo lôi cuốn, đóng vai trò như một Data Analyst trình bày với sếp/khách hàng.
+
+
+TỔNG ĐIỂM: 10.0
+
+
+CHÚ Ý QUAN TRỌNG VỀ ĐIỂM VẤN ĐÁP
+=====================================================
+Nội dung bảo vệ và vấn đáp tại lớp sẽ mang tính chất quyết định. Nhóm sinh viên đạt điểm tối đa (theo barem 10 điểm trên) nếu nhóm trình bày tốt, hiểu rõ source code tiền xử lý và giải thích được logic tính toán trên Dashboard, trả lời được các câu hỏi phản biện của Giảng viên. 
+Trường hợp nhóm sinh viên trả lời chưa tốt, ỷ lại vào thành viên khác, hoặc phát hiện copy code/dashboard mà không hiểu, điểm sẽ bị trừ dần (tối đa trừ 4.0 điểm) từ tổng điểm của 4 phần nêu trên, thậm chí hủy kết quả cuối học phần nếu vi phạm tính liêm chính học thuật.

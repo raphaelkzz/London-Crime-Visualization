@@ -1,0 +1,27 @@
+{
+  "unit": "recorded offences per borough-month",
+  "test_start": "2025-08-01",
+  "test_end": "2026-07-01",
+  "forecast_months": 6,
+  "linear_borough_month": {
+    "MAE": 255.63556007044602,
+    "RMSE": 605.9263277751844,
+    "R2": 0.6503989776595251
+  },
+  "baseline_borough_month": {
+    "MAE": 157.35677083333334,
+    "RMSE": 288.3234177606229,
+    "R2": 0.9208423518512686
+  },
+  "linear_city_month": {
+    "MAE": 6818.07946083296,
+    "RMSE": 7121.791004699536,
+    "R2": -2.2148203095516266
+  },
+  "baseline_city_month": {
+    "MAE": 2202.5833333333335,
+    "RMSE": 2640.0165877004133,
+    "R2": 0.5582347352589782
+  },
+  "note": "Negative predictions clipped to zero consistently in evaluation and forecast. No causal interpretation."
+}

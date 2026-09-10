@@ -1,0 +1,119 @@
+{
+  "sources": [
+    {
+      "dataset": "CRIME_LSOA_HIST",
+      "bytes": 20960925,
+      "sha256": "6b310c4cc0d613bc177cce55c7c0c2bb73252384dbd11509139db397da8707ef"
+    },
+    {
+      "dataset": "CRIME_LSOA_RECENT",
+      "bytes": 13319748,
+      "sha256": "a692f3ad724fbac1173b3713dbf9872a9425969df4bb293577d666d0c297e3f1"
+    },
+    {
+      "dataset": "CRIME_WARD_HIST",
+      "bytes": 3672016,
+      "sha256": "7d69fcc8098e35b15667a1184699272414b2aa2158b37924f7812441fc48b6b8"
+    },
+    {
+      "dataset": "CRIME_WARD_RECENT",
+      "bytes": 2361715,
+      "sha256": "12ebdb6fd0fb7484b376bf86f2b52c58a7af667125a1ccaf77111032f6cb41dd"
+    },
+    {
+      "dataset": "CRIME_BOROUGH_HIST",
+      "bytes": 215590,
+      "sha256": "32b305a750bbd1b9889c1a9eb6b4e91e81dbcf98eab987303d51db973be24d88"
+    },
+    {
+      "dataset": "CRIME_BOROUGH_RECENT",
+      "bytes": 123881,
+      "sha256": "bfd709b85530f10900c28cb7ac8cbbd4875b823d8cf2585da18a6c5dec1df3ee"
+    },
+    {
+      "dataset": "POPULATION_TS001",
+      "bytes": 1870128,
+      "sha256": "b724c1208b7628c7c558156fcc619446486353a12d0b6e0bf388add225653dc6"
+    },
+    {
+      "dataset": "LSOA_BOUNDARY",
+      "bytes": 19936645,
+      "sha256": "8dc38be29e8cec6508a16f5825f8666dde25ae743d73f0acc63630d00ea93c47"
+    },
+    {
+      "dataset": "DWO_WORKFORCE",
+      "bytes": 7974645,
+      "sha256": "0bf2e225268af4584de43428f8f28029165cfb712cbf4f3404e1e271d160f14e"
+    },
+    {
+      "dataset": "FRONT_COUNTER_TRAVEL_2013",
+      "bytes": 99873,
+      "sha256": "23fd605539bf87eac913007f8fd80c806a404db78a97c9bc2527e2b30a330cd2"
+    },
+    {
+      "dataset": "FRONT_COUNTER_POINTS_2013",
+      "bytes": 10750,
+      "sha256": "f89c8c299fd042c098e869f60f42325bf5aa981830f084274f9aef12dd2d5722"
+    }
+  ],
+  "raw_crime": [
+    {
+      "file": "mps_borough_level_crime_historical_2010_04_to_2024_07.csv",
+      "rows": 1125,
+      "missing_cells": 0
+    },
+    {
+      "file": "mps_borough_level_crime_recent_2024_08_to_2026_07.csv",
+      "rows": 991,
+      "missing_cells": 0
+    },
+    {
+      "file": "mps_ward_level_crime_historical_2010_04_to_2024_07.csv",
+      "rows": 20931,
+      "missing_cells": 0
+    },
+    {
+      "file": "mps_ward_level_crime_recent_2024_08_to_2026_07.csv",
+      "rows": 18806,
+      "missing_cells": 0
+    },
+    {
+      "file": "mps_lsoa_level_crime_historical_2019_03_to_2024_07.csv",
+      "rows": 121222,
+      "missing_cells": 0,
+      "matched_rows": 121222
+    },
+    {
+      "file": "mps_lsoa_level_crime_recent_2024_08_to_2026_07.csv",
+      "rows": 106304,
+      "missing_cells": 0,
+      "matched_rows": 106304
+    }
+  ],
+  "join_checks": {
+    "census_boundary_lsoa": 4994,
+    "mps_boroughs": 32,
+    "crime_lsoa_codes": 4991,
+    "security_eligible_months": 1920,
+    "security_matched_months": 1920,
+    "crime_total_preserved": 5214794,
+    "excluded_crime_total": 100453,
+    "fte_observed_months": 1896,
+    "fte_missing_months": 24
+  },
+  "invalid_geometries_before": 0,
+  "outlier_months_retained": 54,
+  "security": {
+    "strength_rows": 73567,
+    "activity_rows": 126230,
+    "invalid_strengths": 0,
+    "invalid_activity": 0,
+    "exact_duplicate_strength_rows": 0
+  },
+  "travel_600_replaced": 52,
+  "period": {
+    "start": "2020-08-01",
+    "end": "2026-07-01",
+    "months": 72
+  }
+}
