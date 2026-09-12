@@ -7,6 +7,7 @@
 - Phân tích 5.214.794 vụ được ghi nhận tại 32 borough, từ 08/2020 đến 07/2026.
 - Kết nối dữ liệu tội phạm, dân số Census 2021, ranh giới địa lý và nguồn lực cảnh sát.
 - Dashboard gồm 9 loại biểu đồ, bộ lọc thời gian/địa bàn/loại tội phạm và drill-down đến LSOA.
+- Reference line thể hiện trung bình tháng theo bộ lọc trên biểu đồ xu hướng và trung bình cộng các borough có dữ liệu trên xếp hạng (32 khi đầy đủ, không chỉ top 15). Nhãn ghi số borough tham gia; tỷ lệ được lấy trung bình cộng, không phải tỷ lệ dân số có trọng số toàn London. Đây là mốc mô tả, không phải ngưỡng an toàn. Drop line dóng điểm dữ liệu tới hai trục khi rê chuột trên xu hướng, scatter, LSOA và dự báo.
 - Pipeline làm sạch dữ liệu, tạo 6 biểu đồ EDA và dự báo 6 tháng bằng Linear Regression, so sánh với seasonal naive.
 
 ## Cài đặt và chạy
@@ -50,7 +51,7 @@ Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào
 .\.venv\Scripts\python.exe -m pytest tests/test_pipeline.py tests/test_app.py -q
 ```
 
-Các kiểm thử dữ liệu và ứng dụng cần có dữ liệu đã xử lý. Lần kiểm chứng gần nhất: 7 kiểm thử đạt; bản đồ đủ 32 borough, chọn biểu đồ cập nhật bộ lọc và giao diện mobile không tràn ngang.
+Các kiểm thử dữ liệu và ứng dụng cần có dữ liệu đã xử lý. Lần kiểm chứng gần nhất: 8 kiểm thử đạt; bản đồ đủ 32 borough, chọn biểu đồ cập nhật bộ lọc và giao diện mobile không tràn ngang. Đường dóng đã được kiểm tra bằng thao tác rê chuột thật trên trình duyệt; bằng chứng trong `reports/verification/reference_line_checks.json`. Có thể chạy lại bằng `python tests/verify_reference_lines.py` khi dashboard đang chạy (cần Playwright và Microsoft Edge).
 
 ## Giới hạn cần lưu ý
 

@@ -53,6 +53,12 @@ def chart(fig, key, callback=None):
     fig.update_layout(font={'family': 'Arial', 'size': 12}, margin=dict(l=12, r=12, t=40, b=12),
                       paper_bgcolor='white', plot_bgcolor='white', colorway=COLORS,
                       legend=dict(orientation='h', y=-.2), height=410)
+    if key in {'trend', 'scatter', 'lsoa_trend', 'forecast'}:
+        fig.update_layout(hovermode='closest', hoverdistance=30, spikedistance=-1)
+        spike_style = dict(showspikes=True, spikemode='toaxis', spikesnap='data',
+                           spikecolor='#5F6368', spikethickness=1, spikedash='dot')
+        fig.update_xaxes(**spike_style)
+        fig.update_yaxes(**spike_style)
     if callback:
         fig.update_layout(clickmode='event+select')
         st.plotly_chart(fig, width='stretch', key=key, on_select=callback, selection_mode='points')
@@ -137,12 +143,21 @@ with overview:
         fig = px.bar(ranking.nlargest(15, metric).sort_values(metric), x=metric, y='borough_name',
                      custom_data=['borough_name'], color_discrete_sequence=COLORS,
                      labels={metric: measure, 'borough_name': ''})
+        average = ranking[metric].mean()
+        fig.add_vline(x=average, line_dash='dash', line_color='#B83E58',
+                      annotation_text=f'TB {len(ranking)} borough: {average:,.2f}',
+                      annotation_position='top right')
         chart(fig, rank_key, lambda: select_borough(rank_key))
     st.caption(f'Bản đồ và xếp hạng: toàn bộ 32 borough trong bộ lọc thời gian/loại tội phạm. Phạm vi chi tiết đang chọn: {borough}.')
     trend = filtered.groupby('month', as_index=False).crime_count.sum()
     trend['rate_per_1000'] = trend.crime_count / population * 1000
-    chart(px.line(trend, x='month', y=metric, markers=True, title=f'Xu hướng · {borough}',
-                  labels={'month': 'Tháng', metric: measure}), 'trend')
+    fig = px.line(trend, x='month', y=metric, markers=True, title=f'Xu hướng · {borough}',
+                  labels={'month': 'Tháng', metric: measure})
+    average = trend[metric].mean()
+    fig.add_hline(y=average, line_dash='dash', line_color='#B83E58',
+                  annotation_text=f'TB tháng trong kỳ: {average:,.2f}',
+                  annotation_position='top right')
+    chart(fig, 'trend')
 
 with composition:
     left, right = st.columns(2)
@@ -229,7 +244,14 @@ with local:
             chart(fig, 'lsoa_map')
             history = lsoa if chosen == ALL else lsoa[lsoa.lsoa_code == chosen]
             local_trend = history.groupby('month', as_index=False).crime_count.sum()
-            chart(px.line(local_trend, x='month', y='crime_count', title='Số vụ ghi nhận tại LSOA đang chọn'), 'lsoa_trend')
+            fig = px.line(local_trend, x='month', y='crime_count', markers=True,
+                          title='Số vụ ghi nhận tại LSOA đang chọn',
+                          labels={'month': 'Tháng', 'crime_count': 'Số vụ'})
+            average = local_trend.crime_count.mean()
+            fig.add_hline(y=average, line_dash='dash', line_color='#B83E58',
+                          annotation_text=f'TB tháng trong kỳ: {average:,.2f}',
+                          annotation_position='top right')
+            chart(fig, 'lsoa_trend')
             st.dataframe(plot_areas[['lsoa_code', 'lsoa_name', 'crime_count', 'population_2021', 'rate_per_1000']], hide_index=True)
         else:
             st.info('Không có dữ liệu LSOA cho nhóm/phân nhóm và thời gian này; không coi là không có tội phạm.')

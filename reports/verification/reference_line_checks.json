@@ -1,0 +1,7 @@
+{
+  "trend_reference_line": true,
+  "trend_pointer_drop_lines": true,
+  "scatter_pointer_drop_lines": true,
+  "mobile_no_overflow": true,
+  "page_errors": []
+}
