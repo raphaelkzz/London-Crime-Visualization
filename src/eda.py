@@ -78,7 +78,9 @@ Phạm vi: 32 borough thuộc MPS, {city.month.min():%m/%Y}-{city.month.max():%m
 
 Các hình 01-06 trong `figures/` là kết quả Matplotlib/Seaborn từ toàn bộ dữ liệu đã xử lý. Cần diễn giải sâu thêm theo câu hỏi nghiên cứu trước khi đưa vào báo cáo cuối kỳ.
 '''
-    (REPORTS / 'INSIGHTS.md').write_text(notes, encoding='utf-8')
+    notes_dir = REPORTS.parent.parent / 'Tai_Lieu_Do_An' / 'reports'
+    notes_dir.mkdir(parents=True, exist_ok=True)
+    (notes_dir / 'INSIGHTS.md').write_text(notes, encoding='utf-8')
     print(f'Saved six EDA figures and findings to {REPORTS}', flush=True)
 
 

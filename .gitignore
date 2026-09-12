@@ -12,3 +12,5 @@ data/processed/
 *.pem
 *.key
 reports/verification/debug_*.png
+*.md
+!README.md

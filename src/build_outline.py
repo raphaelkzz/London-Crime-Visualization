@@ -3,7 +3,9 @@ from pathlib import Path
 import mistune
 
 ROOT = Path(__file__).resolve().parents[1]
-source = ROOT / 'docs' / 'DE_CUONG_DO_AN.md'
+source = ROOT.parent / 'Tai_Lieu_Do_An' / 'docs' / 'DE_CUONG_DO_AN.md'
+if not source.is_file():
+    raise SystemExit(f'Local outline document required: {source}')
 markdown = mistune.create_markdown(escape=True, plugins=['table'])
 body = markdown(source.read_text(encoding='utf-8'))
 html = '''<!doctype html>
@@ -20,6 +22,6 @@ th{background:#edf3f3}a{color:#007078;overflow-wrap:anywhere}
 pre{background:#f4f5f5;padding:16px;overflow:auto}code{font-size:13px}
 @media print{main{margin:0;max-width:none;padding:0}body{font-size:11pt}h2{break-after:avoid}tr{break-inside:avoid}a{color:inherit}pre{white-space:pre-wrap}}
 </style></head><body><main>''' + body + '</main></body></html>'
-target = source.with_suffix('.html')
+target = ROOT / 'docs' / 'DE_CUONG_DO_AN.html'
 target.write_text(html, encoding='utf-8')
 print(target)

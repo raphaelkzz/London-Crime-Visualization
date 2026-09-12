@@ -1,66 +1,60 @@
-# Đồ án trực quan hóa tội phạm và phân bố an ninh London
+# London Crime Visualization
 
-## Lưu ý khi clone từ GitHub
+Đồ án nghiên cứu và trực quan hóa tội phạm cùng phân bố nguồn lực cảnh sát tại London, sử dụng Python, Streamlit và Plotly.
 
-Kho Git lưu mã nguồn, tài liệu, notebook và kết quả kiểm chứng; không lưu `.venv`, dữ liệu thô hoặc dữ liệu đã xử lý. Các dữ liệu này vẫn được giữ nguyên trên máy thực hiện đồ án. Clone kho chưa đủ để chạy dashboard ngay: cần khôi phục `data/raw` theo cấu trúc và nguồn trong [danh mục dataset](docs/DATASET_CATALOG.md), đối chiếu [manifest](data/SOURCE_MANIFEST.csv), cài thư viện theo [hướng dẫn](docs/CAI_DAT_VA_DEMO.md), rồi chạy `python run_pipeline.py` để tạo lại `data/processed`. Notebook đã lưu kết quả có thể đọc mà không chạy lại.
+## Phạm vi và chức năng
 
-## Phiên bản đã triển khai ngày 10/09/2026
+- Phân tích 5.214.794 vụ được ghi nhận tại 32 borough, từ 08/2020 đến 07/2026.
+- Kết nối dữ liệu tội phạm, dân số Census 2021, ranh giới địa lý và nguồn lực cảnh sát.
+- Dashboard gồm 9 loại biểu đồ, bộ lọc thời gian/địa bàn/loại tội phạm và drill-down đến LSOA.
+- Pipeline làm sạch dữ liệu, tạo 6 biểu đồ EDA và dự báo 6 tháng bằng Linear Regression, so sánh với seasonal naive.
 
-Đã chạy tiền xử lý, EDA và mô hình trên dữ liệu thực: 5.214.794 vụ thuộc 32 borough, 72 tháng. Dashboard có chín loại biểu đồ, lọc theo thời gian/địa bàn/nhóm, chọn borough trên map/bar và drill-down đến LSOA.
+## Cài đặt và chạy
 
-- [Đề cương đồ án](docs/DE_CUONG_DO_AN.md): mục tiêu, phương pháp, câu hỏi nghiên cứu, kế hoạch báo cáo và vấn đáp.
-- [Cài đặt và demo](docs/CAI_DAT_VA_DEMO.md).
-- [Notebook EDA](notebooks/02_eda_london_crime.ipynb).
-- [Insight từ dữ liệu thực](reports/INSIGHTS.md).
-- [Kết quả đánh giá mô hình](reports/model_summary.json).
-
-Chạy từ thư mục `Do_An`:
+Yêu cầu Python 3.10 trở lên. Chạy tại thư mục gốc của kho:
 
 ```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe run_pipeline.py
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
 ```
 
-Pipeline hiện thực nằm trong `src/preprocess.py`, `src/eda.py`, `src/model.py`, được điều phối bằng `run_pipeline.py`. Dữ liệu xử lý lưu trong `data/processed`; LSOA chia tệp theo borough để giảm lượng dữ liệu phải đọc khi tương tác.
+Mở http://localhost:8501 sau khi khởi động Streamlit.
 
-Hai kết quả cần trình bày rõ: nguồn thiếu 24 tháng FTE Camden (08/2024–07/2026), nên KPI tổng FTE chỉ là phần đã biết; Linear Regression có MAE 255,64 vụ/borough-tháng trên test, cao hơn seasonal naive 157,36. Không điền quân số thiếu bằng 0 hoặc che kết quả mô hình kém baseline.
+**Cần chuẩn bị dữ liệu trước khi chạy pipeline.** Kho không chứa `data/raw`, `data/processed` hoặc `.venv`. Khôi phục các tệp gốc và thư mục giải nén vào `data/raw` theo đường dẫn trong `src/preprocess.py`; [manifest nguồn](data/SOURCE_MANIFEST.csv) cung cấp URL và SHA-256 để đối chiếu. Dữ liệu vẫn được giữ nguyên trên máy thực hiện đồ án. Clone kho không tự tải dữ liệu; pipeline tạo lại `data/processed` từ dữ liệu gốc đã có.
 
-Tài liệu pipeline bên dưới ban đầu là thiết kế đề xuất; phần “Phiên bản thực thi” trong `docs/PIPELINE.md` ghi tên tệp và quyết định triển khai thực tế.
-
-Thư mục này chứa dữ liệu thô đã tải, bằng chứng nguồn và pipeline đề xuất cho đồ án. Phạm vi được chọn là London vì các nguồn chính thức tải được ổn định, có dữ liệu không gian và có thể kết nối crime, population, boundary và police workforce.
-
-## Bắt đầu từ đâu
-
-1. Đọc [PHAN_TICH_RUBRIC.md](docs/PHAN_TICH_RUBRIC.md) để biết các điều kiện phải đạt.
-2. Đọc [DATASET_CATALOG.md](docs/DATASET_CATALOG.md) để hiểu bộ dữ liệu đã chọn và các giới hạn.
-3. Đọc [PIPELINE.md](docs/PIPELINE.md) để triển khai từng bước.
-4. Tra cứu [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) khi viết code và báo cáo.
-5. Kiểm tra [SOURCE_MANIFEST.csv](data/SOURCE_MANIFEST.csv) để lấy link nguồn và mã SHA-256 của tệp tải về.
-
-## Cấu trúc thư mục
+## Cấu trúc
 
 ```text
-Do_An/
-├── data/
-│   ├── raw/          Dữ liệu gốc, không chỉnh sửa
-│   ├── processed/    Dữ liệu sau làm sạch và kết nối
-│   └── SOURCE_MANIFEST.csv
-├── src/              Script Python của pipeline
-├── notebooks/        Notebook EDA
-├── dashboard/        Ứng dụng Streamlit + Plotly
-├── reports/          Báo cáo IEEE và hình xuất
-└── docs/             Rubric, pipeline, data dictionary, bằng chứng nguồn
+dashboard/       Dashboard Streamlit
+src/             Tiền xử lý, EDA, mô hình và tiện ích
+data/            Manifest nguồn; dữ liệu local không đưa vào Git
+notebooks/       Notebook EDA có kết quả đã chạy
+reports/         Biểu đồ, chỉ số mô hình và bằng chứng kiểm thử
+docs/            Rubric, bản HTML đề cương và bằng chứng nguồn
+tests/           Kiểm thử pipeline, ứng dụng và trình duyệt
+run_pipeline.py  Chạy pipeline từ đầu đến cuối
 ```
 
-## Kết luận chọn dữ liệu
+Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào thư mục `Tai_Lieu_Do_An` cạnh thư mục dự án trên máy local. README này là tài liệu Markdown duy nhất được duy trì trong kho. EDA lưu ghi chú mới vào `Tai_Lieu_Do_An/reports`; tiện ích tạo HTML đề cương cần tài liệu local tại `Tai_Lieu_Do_An/docs/DE_CUONG_DO_AN.md`.
 
-- Bộ dữ liệu hợp lệ theo rubric: nhiều hơn 5.000 dòng và có ít nhất 3 bảng độc lập để Join/Merge.
-- Crime LSOA có 227.526 dòng thô, bao phủ 08/2020 đến 07/2026.
-- Census 2021 khớp 4.991/4.991 mã LSOA xuất hiện trong dữ liệu crime.
-- Boundary khớp đủ 4.991 mã crime và hỗ trợ choropleth map.
-- Dữ liệu cảnh sát có 126.230 dòng hoạt động và 73.567 dòng quân số, từ 08/2021 đến 07/2026.
-- Dữ liệu quầy cảnh sát năm 2013 chỉ là nguồn phụ để minh họa khả năng tiếp cận lịch sử, không dùng để suy luận hiện trạng hoặc làm biến dự báo chính.
+## Kết quả và kiểm thử
 
-## Công cụ đề xuất
+- [Notebook EDA](notebooks/02_eda_london_crime.ipynb)
+- [Kết quả mô hình](reports/model_summary.json)
+- [Kiểm tra chất lượng dữ liệu](reports/data_quality.json)
+- [Kiểm chứng giao diện](reports/verification/browser_checks.json)
 
-Python cho tiền xử lý, EDA và mô hình; Streamlit + Plotly cho dashboard. Cấu hình này thống nhất một ngôn ngữ từ đầu đến cuối và phù hợp yêu cầu bản đồ, bộ lọc, drill-down và biểu đồ dự báo.
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_pipeline.py tests/test_app.py -q
+```
+
+Các kiểm thử dữ liệu và ứng dụng cần có dữ liệu đã xử lý. Lần kiểm chứng gần nhất: 7 kiểm thử đạt; bản đồ đủ 32 borough, chọn biểu đồ cập nhật bộ lọc và giao diện mobile không tràn ngang.
+
+## Giới hạn cần lưu ý
+
+- Số vụ ghi nhận không phản ánh đầy đủ tội phạm thực tế. Tỷ lệ dùng dân số thường trú Census 2021 làm mẫu số cố định.
+- Dữ liệu LSOA không công bố Sexual Offences; không đối chiếu tổng LSOA với tổng borough như hai phạm vi tương đương.
+- Camden thiếu 24 tháng FTE từ 08/2024 đến 07/2026. KPI nhân lực chỉ cộng phần đã biết, không thay số thiếu bằng 0.
+- Linear Regression có MAE 255,64 vụ/borough-tháng, kém seasonal naive (157,36) trên tập kiểm tra. Dự báo mang tính tham khảo; tương quan nhân lực và tội phạm không chứng minh quan hệ nhân quả.
