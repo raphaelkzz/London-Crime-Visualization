@@ -17,13 +17,14 @@ Yêu cầu Python 3.10 trở lên. Chạy tại thư mục gốc của kho:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe scripts/fetch_raw_data.py
 .\.venv\Scripts\python.exe run_pipeline.py
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
 ```
 
 Mở http://localhost:8501 sau khi khởi động Streamlit.
 
-**Cần chuẩn bị dữ liệu trước khi chạy pipeline.** Kho không chứa `data/raw`, `data/processed` hoặc `.venv`. Khôi phục các tệp gốc và thư mục giải nén vào `data/raw` theo đường dẫn trong `src/preprocess.py`; [manifest nguồn](data/SOURCE_MANIFEST.csv) cung cấp URL và SHA-256 để đối chiếu. Dữ liệu vẫn được giữ nguyên trên máy thực hiện đồ án. Clone kho không tự tải dữ liệu; pipeline tạo lại `data/processed` từ dữ liệu gốc đã có.
+**Cần chuẩn bị dữ liệu trước khi chạy pipeline.** Kho không chứa `data/raw`, `data/processed` hoặc `.venv`. Lệnh `scripts/fetch_raw_data.py` tải những tệp còn thiếu theo [manifest nguồn](data/SOURCE_MANIFEST.csv), kiểm tra SHA-256 và giải nén các tệp cần thiết. Nếu URL nguồn đã hết hạn hoặc bị chặn, tải lại từ trang nguồn trong manifest, đặt đúng đường dẫn và chạy lại lệnh để xác minh. Pipeline tạo lại `data/processed` từ dữ liệu gốc đã có.
 
 ## Cấu trúc
 
@@ -33,12 +34,13 @@ src/             Tiền xử lý, EDA, mô hình và tiện ích
 data/            Manifest nguồn; dữ liệu local không đưa vào Git
 notebooks/       Notebook EDA có kết quả đã chạy
 reports/         Biểu đồ, chỉ số mô hình và bằng chứng kiểm thử
+scripts/         Tải và kiểm tra dữ liệu gốc
 docs/            Rubric, bản HTML đề cương và bằng chứng nguồn
 tests/           Kiểm thử pipeline, ứng dụng và trình duyệt
 run_pipeline.py  Chạy pipeline từ đầu đến cuối
 ```
 
-Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào thư mục `Tai_Lieu_Do_An` cạnh thư mục dự án trên máy local. README này là tài liệu Markdown duy nhất được duy trì trong kho. EDA lưu ghi chú mới vào `Tai_Lieu_Do_An/reports`; tiện ích tạo HTML đề cương cần tài liệu local tại `Tai_Lieu_Do_An/docs/DE_CUONG_DO_AN.md`.
+Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào thư mục `Tai_Lieu_Do_An` cạnh thư mục dự án trên máy local. README này là tài liệu Markdown duy nhất được duy trì trong kho. Tiện ích tạo HTML đề cương cần tài liệu local tại `Tai_Lieu_Do_An/docs/DE_CUONG_DO_AN.md`.
 
 ## Kết quả và kiểm thử
 
