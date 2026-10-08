@@ -50,29 +50,28 @@ def load(name):
     return pd.read_parquet(DATA / f'{name}.parquet')
 
 
-@st.cache_data
+@st.cache_resource
+def load_geography(level):
+    return json.loads((DATA / f'{level}.geojson').read_text(encoding='utf-8'))
+
+
 def geography(level, borough=None):
-    geo = json.loads((DATA / f'{level}.geojson').read_text(encoding='utf-8'))
+    geo = load_geography(level)
     if borough:
-        geo['features'] = [f for f in geo['features'] if f['properties']['borough_name'] == borough]
+        return {**geo, 'features': [f for f in geo['features'] if f['properties']['borough_name'] == borough]}
     return geo
 
 
 @st.cache_data
-def group_colors(facts):
-    """7 nhóm lớn nhất (toàn bộ dữ liệu) có màu riêng; các nhóm còn lại gộp thành 'Khác'."""
-    order = facts.groupby('crime_group').crime_count.sum().sort_values(ascending=False).index.tolist()
+def group_metadata(facts):
+    """Màu cố định và các nhóm quá hiếm để vẽ boxplot, tính từ cùng một bảng tổng."""
+    totals = facts.groupby('crime_group').crime_count.sum().sort_values(ascending=False)
+    order = totals.index.tolist()
     colors = {group: CATEGORICAL[i] for i, group in enumerate(order[:7])}
     colors.update({group: OTHER_COLOR for group in order[7:]})
     colors[OTHER] = OTHER_COLOR
-    return colors
-
-
-@st.cache_data
-def minor_groups(facts):
-    """Nhóm < 0,1% tổng số vụ (NFIB Fraud, Fraud and Forgery): bỏ khỏi boxplot vì gần như không có số liệu."""
-    totals = facts.groupby('crime_group').crime_count.sum()
-    return totals[totals < .001 * totals.sum()].index.tolist()
+    minor = totals[totals < .001 * totals.sum()].index.tolist()
+    return colors, minor
 
 
 def with_rate(frame, dim):
@@ -276,7 +275,7 @@ def render_overview(dim, f, s, epoch):
 
 
 # Tab 2: Cơ cấu và phân phối
-def render_composition(dim, f, s, colors, epoch):
+def render_composition(dim, f, s, colors, minor, epoch):
     filtered, metric, measure = s['filtered'], f['metric'], f['measure']
     left, right = st.columns(2)
     with left:
@@ -323,7 +322,7 @@ def render_composition(dim, f, s, colors, epoch):
     group_rates = with_rate(filtered.groupby(['borough_name', 'month', 'crime_group'], as_index=False)
                             .crime_count.sum(), dim)
     group_rates = group_rates[(group_rates.rate_per_1000 > 0)                   # thang log không nhận 0
-                              & ~group_rates.crime_group.isin(minor_groups(load('crime_borough')))]
+                              & ~group_rates.crime_group.isin(minor)]
     order = group_rates.groupby('crime_group').rate_per_1000.median().sort_values(ascending=False).index.tolist()
     left, right = st.columns(2)
     with left:
@@ -542,7 +541,7 @@ def main():
         st.stop()
 
     facts, dim, monthly = load('crime_borough'), load('dim_borough'), load('monthly')
-    colors = group_colors(facts)
+    colors, minor = group_metadata(facts)
     months = sorted(facts.month.dt.strftime('%Y-%m').unique())
     f = sidebar(facts, dim, months)
 
@@ -562,7 +561,7 @@ def main():
     with tabs[0]:
         render_overview(dim, f, s, epoch)
     with tabs[1]:
-        render_composition(dim, f, s, colors, epoch)
+        render_composition(dim, f, s, colors, minor, epoch)
     with tabs[2]:
         render_security(f, s, coverage, epoch)
     with tabs[3]:
