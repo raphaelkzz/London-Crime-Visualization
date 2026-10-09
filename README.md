@@ -18,6 +18,7 @@ Yêu cầu Python 3.10 trở lên. Chạy tại thư mục gốc của kho:
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe scripts/fetch_raw_data.py
+$env:PYTHONUTF8 = '1'
 .\.venv\Scripts\python.exe run_pipeline.py
 .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
 ```
@@ -32,7 +33,7 @@ Mở http://localhost:8501 sau khi khởi động Streamlit.
 dashboard/       Dashboard Streamlit
 src/             Tiền xử lý, EDA, mô hình và tiện ích
 data/            Manifest nguồn; dữ liệu local không đưa vào Git
-notebooks/       Notebook EDA có kết quả đã chạy
+notebooks/       Notebook tổng quan dữ liệu: tiền xử lý và EDA
 reports/         Biểu đồ, chỉ số mô hình và bằng chứng kiểm thử
 scripts/         Tải và kiểm tra dữ liệu gốc
 docs/            Rubric, bản HTML đề cương và bằng chứng nguồn
@@ -40,20 +41,21 @@ tests/           Kiểm thử pipeline, ứng dụng và trình duyệt
 run_pipeline.py  Chạy pipeline từ đầu đến cuối
 ```
 
-Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào thư mục `Tai_Lieu_Do_An` cạnh thư mục dự án trên máy local. README này là tài liệu Markdown duy nhất được duy trì trong kho. Tiện ích tạo HTML đề cương cần tài liệu local tại `Tai_Lieu_Do_An/docs/DE_CUONG_DO_AN.md`.
+Các tài liệu Markdown phân tích đã được chuyển ra ngoài kho, vào thư mục `Tai_Lieu_Do_An` cạnh thư mục dự án trên máy local. README này là tài liệu Markdown duy nhất được duy trì trong kho; bản HTML đề cương vẫn có trong `docs/`.
 
 ## Kết quả và kiểm thử
 
-- [Notebook EDA](notebooks/02_eda_london_crime.ipynb)
+- [Notebook tổng quan dữ liệu (tiền xử lý và EDA)](notebooks/preprocess.ipynb)
+- [Đề cương đồ án](docs/DE_CUONG_DO_AN.html)
 - [Kết quả mô hình](reports/model_summary.json)
 - [Kiểm tra chất lượng dữ liệu](reports/data_quality.json)
 - [Kiểm chứng giao diện](reports/verification/browser_checks.json)
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest tests/test_pipeline.py tests/test_app.py -q
+.\.venv\Scripts\python.exe -m pytest tests/test_pipeline.py tests/test_app.py tests/test_fetch_raw_data.py -q
 ```
 
-Các kiểm thử dữ liệu và ứng dụng cần có dữ liệu đã xử lý. Lần kiểm chứng gần nhất: 8 kiểm thử đạt; bản đồ đủ 32 borough, chọn biểu đồ cập nhật bộ lọc và giao diện mobile không tràn ngang. Đường dóng đã được kiểm tra bằng thao tác rê chuột thật trên trình duyệt; bằng chứng trong `reports/verification/reference_line_checks.json`. Có thể chạy lại bằng `python tests/verify_reference_lines.py` khi dashboard đang chạy (cần Playwright và Microsoft Edge).
+Các kiểm thử dữ liệu và ứng dụng cần có dữ liệu đã xử lý. Lần kiểm chứng gần nhất: 10 kiểm thử đạt; bản đồ đủ 32 borough, chọn biểu đồ cập nhật bộ lọc và giao diện mobile không tràn ngang. Đường dóng đã được kiểm tra bằng thao tác rê chuột thật trên trình duyệt; bằng chứng trong `reports/verification/reference_line_checks.json`. Có thể chạy lại bằng `python tests/verify_reference_lines.py` khi dashboard đang chạy (cần Playwright và Microsoft Edge).
 
 ## Giới hạn cần lưu ý
 
