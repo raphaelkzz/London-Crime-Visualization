@@ -89,8 +89,8 @@ def forecast_borough(name, rows):
 
 
 def print_summary(report):
-    print(f"Test {report['test_start']} to {report['test_end']} | forecast {report['forecast_months']} months", flush=True)
-    print(f"{'Level':<16}{'Model':<20}{'MAE':>10}{'RMSE':>10}{'R2':>8}", flush=True)
+    print(f"Test {report['test_start']} → {report['test_end']} | dự báo {report['forecast_months']} tháng", flush=True)
+    print(f"{'Cấp':<16}{'Mô hình':<20}{'MAE':>10}{'RMSE':>10}{'R2':>8}", flush=True)
     for level in ['borough_month', 'city_month']:
         for label, key in [('Linear Regression', 'linear'), ('Seasonal naive', 'baseline')]:
             s = report[f'{key}_{level}']
